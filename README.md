@@ -76,7 +76,7 @@ pip install -r requirements.txt
 Create a `.env` file in the root directory:
 ```env
 HOST=your_database_host
-PORT=3306
+DB_PORT=3306
 DB=agriculture_db
 USER=your_username
 PASSWORD=your_password
