@@ -13,10 +13,10 @@ router = APIRouter(prefix="/farms", tags=["Farm Performance"])
 # ── Endpoint 1: Farm Summary ──────────────────────────────────────────────────
 @router.get("/summary")
 def farm_summary(
-    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh"),
-    farm_type: Optional[str] = Query(None, description="Small | Medium | Large | Commercial"),
+    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh (case-insensitive, e.g. dhaka, DHAKA)"),
+    farm_type: Optional[str] = Query(None, description="Small | Medium | Large | Commercial (case-insensitive, e.g. small, SMALL)"),
     year: Optional[int] = Query(None, description="2022 | 2023 | 2024"),
-    season: Optional[str] = Query(None, description="Spring | Summer | Autumn | Winter | Rabi | Kharif | Zaid | Year-Round"),
+    season: Optional[str] = Query(None, description="Spring | Summer | Autumn | Winter | Rabi | Kharif | Zaid | Year-Round (case-insensitive, e.g. summer, SUMMER)"),
 ):
     # Validate and normalize to proper case
     region = validate(region, VALID_REGIONS, "region")
@@ -82,9 +82,9 @@ def farm_summary(
 # ── Endpoint 3: Top Farms (must be before /{farm_id}) ─────────────────────────
 @router.get("/top")
 def top_farms(
-    metric: Optional[str] = Query("profit", description="profit | revenue | yield"),
-    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh"),
-    farm_type: Optional[str] = Query(None, description="Small | Medium | Large | Commercial"),
+    metric: Optional[str] = Query("profit", description="profit | revenue | yield (case-insensitive, e.g. Profit, PROFIT)"),
+    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh (case-insensitive, e.g. dhaka, DHAKA)"),
+    farm_type: Optional[str] = Query(None, description="Small | Medium | Large | Commercial (case-insensitive, e.g. small, SMALL)"),
     year: Optional[int] = Query(None, description="2022 | 2023 | 2024"),
     limit: Optional[int] = Query(10, description="Positive integer (default: 10)"),
 ):
@@ -170,11 +170,11 @@ def top_farms(
 # ── Endpoint 4: Loss Analysis ─────────────────────────────────────────────────
 @router.get("/loss-analysis")
 def loss_analysis(
-    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh"),
+    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh (case-insensitive, e.g. dhaka, DHAKA)"),
     year: Optional[int] = Query(None, description="2022 | 2023 | 2024"),
-    season: Optional[str] = Query(None, description="Spring | Summer | Autumn | Winter | Rabi | Kharif | Zaid | Year-Round"),
-    quality_grade: Optional[str] = Query(None, description="A | B | C | D"),
-    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice"),
+    season: Optional[str] = Query(None, description="Spring | Summer | Autumn | Winter | Rabi | Kharif | Zaid | Year-Round (case-insensitive, e.g. summer, SUMMER)"),
+    quality_grade: Optional[str] = Query(None, description="A | B | C | D (case-insensitive, e.g. a, A)"),
+    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice (case-insensitive, e.g. cereal, CEREAL)"),
 ):
     # Validate and normalize to proper case
     region = validate(region, VALID_REGIONS, "region")
@@ -247,8 +247,8 @@ def loss_analysis(
 def farm_performance(
     farm_id: int,
     year: Optional[int] = Query(None, description="2022 | 2023 | 2024"),
-    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice"),
-    market_type: Optional[str] = Query(None, description="Local | Wholesale | Export | Retail | Government Procurement"),
+    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice (case-insensitive, e.g. cereal, CEREAL)"),
+    market_type: Optional[str] = Query(None, description="Local | Wholesale | Export | Retail | Government Procurement (case-insensitive, e.g. local, LOCAL)"),
 ):
     # Validate and normalize to proper case
     year = validate(year, VALID_YEARS, "year")

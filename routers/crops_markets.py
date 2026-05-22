@@ -14,11 +14,11 @@ router = APIRouter(tags=["Crop & Market Intelligence"])
 # ── Endpoint 5: Crop Yield Efficiency ────────────────────────────────────────
 @router.get("/crops/yield-efficiency")
 def yield_efficiency(
-    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice"),
-    season: Optional[str] = Query(None, description="Spring | Summer | Autumn | Winter | Rabi | Kharif | Zaid | Year-Round"),
+    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice (case-insensitive, e.g. cereal, CEREAL)"),
+    season: Optional[str] = Query(None, description="Spring | Summer | Autumn | Winter | Rabi | Kharif | Zaid | Year-Round (case-insensitive, e.g. summer, SUMMER)"),
     year: Optional[int] = Query(None, description="2022 | 2023 | 2024"),
-    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh"),
-    water_requirement: Optional[str] = Query(None, description="Low | Medium | High"),
+    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh (case-insensitive, e.g. dhaka, DHAKA)"),
+    water_requirement: Optional[str] = Query(None, description="Low | Medium | High (case-insensitive, e.g. low, LOW)"),
 ):
     # Validate and normalize to proper case
     crop_category = validate(crop_category, VALID_CROP_CATEGORIES, "crop_category")
@@ -93,11 +93,11 @@ def yield_efficiency(
 # ── Endpoint 6: Seasonal Revenue Trend ──────────────────────────────────────
 @router.get("/crops/seasonal-trend")
 def seasonal_trend(
-    crop_name: Optional[str] = Query(None, description="e.g. Potato, Rice, Wheat, Tomato"),
-    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice"),
+    crop_name: Optional[str] = Query(None, description="e.g. Potato, Rice, Wheat, Tomato (case-insensitive, e.g. potato, POTATO)"),
+    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice (case-insensitive, e.g. cereal, CEREAL)"),
     year: Optional[int] = Query(None, description="2022 | 2023 | 2024"),
     quarter: Optional[int] = Query(None, description="1 | 2 | 3 | 4"),
-    market_type: Optional[str] = Query(None, description="Local | Wholesale | Export | Retail | Government Procurement"),
+    market_type: Optional[str] = Query(None, description="Local | Wholesale | Export | Retail | Government Procurement (case-insensitive, e.g. local, LOCAL)"),
 ):
     # Validate and normalize to proper case
     crop_category = validate(crop_category, VALID_CROP_CATEGORIES, "crop_category")
@@ -159,12 +159,12 @@ def seasonal_trend(
 # ── Endpoint 7: Market Price Comparison ─────────────────────────────────────
 @router.get("/markets/price-comparison")
 def price_comparison(
-    market_type: Optional[str] = Query(None, description="Local | Wholesale | Export | Retail | Government Procurement"),
-    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice"),
+    market_type: Optional[str] = Query(None, description="Local | Wholesale | Export | Retail | Government Procurement (case-insensitive, e.g. local, LOCAL)"),
+    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice (case-insensitive, e.g. cereal, CEREAL)"),
     year: Optional[int] = Query(None, description="2022 | 2023 | 2024"),
-    season: Optional[str] = Query(None, description="Spring | Summer | Autumn | Winter | Rabi | Kharif | Zaid | Year-Round"),
-    price_tier: Optional[str] = Query(None, description="Low | Medium | High | Premium"),
-    district: Optional[str] = Query(None, description="e.g. Chittagong, Narayanganj, Dhaka"),
+    season: Optional[str] = Query(None, description="Spring | Summer | Autumn | Winter | Rabi | Kharif | Zaid | Year-Round (case-insensitive, e.g. summer, SUMMER)"),
+    price_tier: Optional[str] = Query(None, description="Low | Medium | High | Premium (case-insensitive, e.g. low, LOW)"),
+    district: Optional[str] = Query(None, description="e.g. Chittagong, Narayanganj, Dhaka (case-insensitive, e.g. chittagong, CHITTAGONG)"),
 ):
     # Validate and normalize to proper case
     market_type = validate(market_type, VALID_MARKET_TYPES, "market_type")
@@ -237,11 +237,11 @@ def price_comparison(
 @router.get("/crops/quality-breakdown")
 def quality_breakdown(
     crop_id: Optional[int] = Query(None, description="1 to 20"),
-    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice"),
+    crop_category: Optional[str] = Query(None, description="Cereal | Vegetable | Fruit | Pulse | Oilseed | Cash Crop | Spice (case-insensitive, e.g. cereal, CEREAL)"),
     year: Optional[int] = Query(None, description="2022 | 2023 | 2024"),
-    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh"),
-    market_type: Optional[str] = Query(None, description="Local | Wholesale | Export | Retail | Government Procurement"),
-    pesticide_residue: Optional[str] = Query(None, description="None | Trace | Low | High"),
+    region: Optional[str] = Query(None, description="Dhaka | Chittagong | Sylhet | Rajshahi | Khulna | Rangpur | Barisal | Mymensingh (case-insensitive, e.g. dhaka, DHAKA)"),
+    market_type: Optional[str] = Query(None, description="Local | Wholesale | Export | Retail | Government Procurement (case-insensitive, e.g. local, LOCAL)"),
+    pesticide_residue: Optional[str] = Query(None, description="None | Trace | Low | High (case-insensitive, e.g. none, NONE)"),
 ):
     # Validate and normalize to proper case
     crop_category = validate(crop_category, VALID_CROP_CATEGORIES, "crop_category")
