@@ -13,6 +13,12 @@
   <img src="https://img.shields.io/badge/License-MIT-green?style=flat" alt="License">
 </p>
 
+<p align="center">
+  <a href="https://agriculture-api-7d7p.onrender.com/docs"><b>Live Demo</b></a> |
+  <a href="https://agriculture-api-7d7p.onrender.com/docs">API Docs</a> |
+  <a href="https://agriculture-api-7d7p.onrender.com/redoc">ReDoc</a>
+</p>
+
 ---
 
 ## Overview
