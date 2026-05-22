@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  agriculture_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_HUB_USERNAME:-softvence}/agriculture_api:latest
+    container_name: agriculture_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: unless-stopped
