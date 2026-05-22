@@ -16,7 +16,7 @@ VALID_METRICS = ["profit", "revenue", "yield"]
 
 
 def validate(value, valid_list, field_name):
-    """Validate and return normalized value (case-insensitive for strings)"""
+    """Validate and return normalized value (case-insensitive for strings, strips whitespace)"""
     if value is None:
         return None
     
@@ -29,13 +29,13 @@ def validate(value, valid_list, field_name):
             )
         return value
     
-    # For strings, do case-insensitive matching
-    value_lower = str(value).lower()
+    # For strings, strip whitespace and do case-insensitive matching
+    value_cleaned = str(value).strip().lower()
     for valid_value in valid_list:
-        if str(valid_value).lower() == value_lower:
+        if str(valid_value).lower() == value_cleaned:
             return valid_value  # Return the properly cased version
     
     raise HTTPException(
         status_code=422,
-        detail=f"Invalid value '{value}' for '{field_name}'. Accepted: {valid_list}"
+        detail=f"Invalid value '{value.strip()}' for '{field_name}'. Accepted: {valid_list}"
     )
