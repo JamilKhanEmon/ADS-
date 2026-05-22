@@ -12,5 +12,12 @@ app.include_router(crops_markets.router)
 
 
 @app.get("/", tags=["Health"])
+@app.head("/", tags=["Health"])
 def root():
     return {"status": "ok", "message": "Agriculture API is running!"}
+
+
+@app.get("/health", tags=["Health"])
+@app.head("/health", tags=["Health"])
+def health_check():
+    return {"status": "healthy"}
