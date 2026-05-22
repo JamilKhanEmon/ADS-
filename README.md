@@ -49,8 +49,8 @@ Agriculture Database API is a robust backend service built with **FastAPI** that
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/your-username/agriculture_api.git
-cd agriculture_api
+git clone https://github.com/JamilKhanEmon/ADS-.git
+cd ADS-
 ```
 
 **2. Create virtual environment**
