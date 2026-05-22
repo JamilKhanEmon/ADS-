@@ -110,7 +110,8 @@ def seasonal_trend(
 
     filters_applied = {}
     if crop_name:
-        # Case-insensitive match for crop_name
+        # Case-insensitive match for crop_name (with strip)
+        crop_name = crop_name.strip()
         df = df[df["crop_name"].str.lower() == crop_name.lower()]
         filters_applied["crop_name"] = crop_name
     if crop_category:
@@ -204,6 +205,8 @@ def price_comparison(
         df = df[df["price_tier"] == price_tier]
         filters_applied["price_tier"] = price_tier
     if district:
+        # Case-insensitive match for district (with strip)
+        district = district.strip()
         df = df[df["district"].str.lower() == district.lower()]
         filters_applied["district"] = district
 
